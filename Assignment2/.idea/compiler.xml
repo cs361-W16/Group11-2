@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="Assignment1" />
       </profile>
+      <profile default="false" name="Annotation profile for Assignment2" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Assignment2" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Assignment1" target="1.7" />
+      <module name="Assignment2" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

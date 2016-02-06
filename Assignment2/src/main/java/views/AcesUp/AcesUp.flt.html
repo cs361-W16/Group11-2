@@ -94,7 +94,16 @@
 <button id="dealButton">Deal</button>
 <BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
 
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
+<BR>Move from column<select id="from_col"><option value = "0">0</option>
+    <option value = "1">1</option>
+    <option value = "2">2</option>
+    <option value = "3">3</option> </select>
+to <select id="to_col"> <option value = "0">0</option>
+    <option value = "1">1</option>
+    <option value = "2">2</option>
+    <option value = "3">3</option></select><button id="moveButton">Move</button>
+
+<button id="newGame">New Game</button>
 
 <script>
 
@@ -126,6 +135,20 @@ $( '.columnOfCards .cardLocation' ).html("");
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
+});
+
+
+$("#newGame").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/gameNew",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
 });
 
 
@@ -186,6 +209,9 @@ $.ajax({
   dataType:"json",
 });
 });
+
+
+
 
 
 </script>

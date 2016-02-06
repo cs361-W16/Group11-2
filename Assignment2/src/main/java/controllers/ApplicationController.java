@@ -47,6 +47,7 @@ public class ApplicationController {
 
     public Result gameReset(){
         Game g = new Game();
+        g.score = 0;
         g.buildDeck();
         g.shuffle();
         g.dealFour();

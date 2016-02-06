@@ -13,6 +13,8 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
+    public int score = 0;
+
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -20,41 +22,6 @@ public class Game {
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //I like space between my methods
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
@@ -64,32 +31,6 @@ public class Game {
             deck.add(new Card(i,Suit.Spades));
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-    //I like space between my methods
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void shuffle() {
         long seed = System.nanoTime();
@@ -133,6 +74,7 @@ public class Game {
             }
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
+                score++;
             }
         }
     }

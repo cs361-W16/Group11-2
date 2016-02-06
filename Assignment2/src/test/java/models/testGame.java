@@ -57,11 +57,33 @@ public class testGame {
     public void testRemoveFunction(){
         Game g = new Game();
         g.buildDeck();
-        g.customDeal(0,3,6,9);
+        g.customDeal(0,3,6,13);
         g.remove(2);
         assertEquals(0,g.cols.get(2).size());
+        g.remove(3);
+        assertEquals(1,g.cols.get(3).size());
     }
 
+    @Test
+    public void testMove(){
+        Game g = new Game();
+        g.buildDeck();
+        g.customDeal(0,3,6,9);
+        g.remove(2);
+        assertEquals(0 ,g.cols.get(2).size());
+        g.move(1, 2);
+        assertEquals(0 ,g.cols.get(1).size());
+    }
+
+    @Test
+    public void testScore(){
+        Game g = new Game();
+        g.buildDeck();
+        g.customDeal(0,3,6,9);
+        assertEquals(0,g.score);
+        g.remove(2);
+        assertEquals(1,g.score);
+    }
 
 
 }

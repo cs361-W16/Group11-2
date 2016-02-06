@@ -13,6 +13,8 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
+    public int score = 0;
+
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -72,6 +74,7 @@ public class Game {
             }
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
+                score++;
             }
         }
     }

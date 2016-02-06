@@ -15,6 +15,7 @@ public class Game {
 
     public int score = 0;
 
+    public int cardsLeft = 52;
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -75,6 +76,7 @@ public class Game {
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
                 score++;
+                cardsLeft--;
             }
         }
     }

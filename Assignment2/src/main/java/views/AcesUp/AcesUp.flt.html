@@ -9,6 +9,10 @@
         <td>Your Score:</td>
         <td id="score"></td>
     </tr>
+    <tr class="cardsLeft">
+        <td>Your Score:</td>
+        <td id="cardsLeft"></td>
+    </tr>
     <tr class="title">
         <td>Column0</td>
         <td >Column1</td>
@@ -112,6 +116,7 @@ var game;
 function display(game) {
 console.log(game);
 $('#score').html(game.score);
+$('#cardsLeft').html(game.cardsLeft);
 $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.cols[0], function( key, val ) {

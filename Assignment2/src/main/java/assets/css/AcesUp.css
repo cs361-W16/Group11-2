@@ -18,6 +18,11 @@ font-size: larger;
 color: red;
 }
 
+.cardsLeft{
+font-weight: bold;
+font-size: larger;
+color: red;
+}
 
 .cardLocation{
 width: 100px;

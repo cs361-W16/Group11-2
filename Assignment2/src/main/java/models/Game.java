@@ -42,6 +42,7 @@ public class Game {
         for(int i = 0; i < 4; i++){
             cols.get(i).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
+            cardsLeft--;
         }
     }
 
@@ -76,7 +77,6 @@ public class Game {
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
                 score++;
-                cardsLeft--;
             }
         }
     }

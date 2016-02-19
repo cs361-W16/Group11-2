@@ -13,9 +13,15 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
-    public int score;
+    public int score = 0;
 
-    public int cardsLeft;
+    public int cardsLeft = 0;
+
+    // gameType 0 = English Game
+    // gameType 1 = Spanish Game
+    // Set to English by default
+    public int gameType = 0;
+
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -23,7 +29,6 @@ public class Game {
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         score = 0;
-        cardsLeft = 52;
     }
 
     public void buildDeck() {

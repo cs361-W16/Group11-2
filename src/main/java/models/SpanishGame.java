@@ -9,10 +9,6 @@ import java.util.Random;
  */
 public class SpanishGame extends Game {
 
-    public java.util.List<Card> deck = new ArrayList<>();
-
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
-
 
     // Spanish Game Constructor
     public SpanishGame()

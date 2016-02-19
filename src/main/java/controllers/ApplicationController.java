@@ -70,7 +70,6 @@ public class ApplicationController {
 */
     public Result gameResetSpanish(){
         Game g = new SpanishGame();
-        g.buildDeck();
         g.shuffle();
         g.dealFour();
         g.score = 0;

@@ -1,0 +1,220 @@
+<h1>Ases Arriba</h1>
+
+<link href="/assets/css/AcesUp.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+<body>
+<table>
+    <tr class="score">
+        <td>Tu Puntacion:</td>
+        <td id="score"></td>
+    </tr>
+    <tr class="cardsLeft">
+        <td>tarjetas restante:</td>
+        <td id="cardsLeft"></td>
+    </tr>
+    <tr class="title">
+        <td>Columna0</td>
+        <td >Columna1</td>
+        <td >Columna2</td>
+        <td >Columna3</td>
+    </tr>
+
+    <tr><td class="columnOfCards" id="c0">
+        <table>
+            <tr><td class="cardLocation l0"></td></tr>
+            <tr><td class="cardLocation l1"></td></tr>
+            <tr><td class="cardLocation l2"></td></tr>
+            <tr><td class="cardLocation l3"></td></tr>
+            <tr><td class="cardLocation l4"></td></tr>
+            <tr><td class="cardLocation l5"></td></tr>
+            <tr><td class="cardLocation l6"></td></tr>
+            <tr><td class="cardLocation l7"></td></tr>
+            <tr><td class="cardLocation l8"></td></tr>
+            <tr><td class="cardLocation l9"></td></tr>
+            <tr><td class="cardLocation l10"></td></tr>
+
+        </table>
+    </td>
+        <td class="columnOfCards" id="c1">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+
+            </table>
+        </td>
+        <td class="columnOfCards" id="c2">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+
+            </table>
+        </td>
+        <td class="columnOfCards" id="c3">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+<button id="dealButton">Reparte</button>
+<BR>Remover de: <button id="Remove1">Columna1</button><button id="Remove2">Columna2</button><button id="Remove3">Columna3</button><button id="Remove4">Columna4</button>
+
+<BR>Mover de columna<select id="from_col"><option value = "0">0</option>
+    <option value = "1">1</option>
+    <option value = "2">2</option>
+    <option value = "3">3</option> </select>
+a <select id="to_col"> <option value = "0">0</option>
+    <option value = "1">1</option>
+    <option value = "2">2</option>
+    <option value = "3">3</option></select><button id="moveButton">Move</button>
+
+<button id="newGame">Nuevo Juego</button>
+
+<script>
+
+var game;
+
+function display(game) {
+console.log(game);
+$('#score').html(game.score);
+$('#cardsLeft').html(game.cardsLeft);
+$( '.columnOfCards .cardLocation' ).html("");
+
+    $.each(game.cols[0], function( key, val ) {
+        $( '#c0 .l'+key ).html(val.value + val.suit);
+    });
+
+ $.each(game.cols[1], function( key, val ) {
+        $( '#c1 .l'+key ).html(val.value + val.suit);
+    });
+
+ $.each(game.cols[2], function( key, val ) {
+        $( '#c2 .l'+key ).html(val.value + val.suit);
+    });
+
+ $.each(game.cols[3], function( key, val ) {
+        $( '#c3 .l'+key ).html(val.value + val.suit);
+    });
+
+}
+
+$.getJSON("http://localhost:8080/game", function( data ) {
+display(data);
+game = data;
+});
+
+
+$("#newGame").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/gameNew",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+$("#dealButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/dealGame",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+function removeCard(colNumber){
+$.ajax({
+type: "POST",
+url: "/removeCard/"+colNumber,
+data: JSON.stringify(game),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+game = data;
+display(data);},
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+
+}
+
+
+$("#Remove1").click(function(){
+    removeCard(0);
+});
+$("#Remove2").click(function(){
+    removeCard(1);
+});
+$("#Remove3").click(function(){
+    removeCard(2);
+});
+$("#Remove4").click(function(){
+    removeCard(3);
+});
+
+
+$("#moveButton").click(function(){
+var colFrom = $("#from_col").val();
+var colTo = $("#to_col").val();
+$.ajax({
+  type: "POST",
+  url: "/moveCard/"+colFrom+"/"+colTo,
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

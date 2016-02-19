@@ -129,7 +129,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
 }
 
-$.getJSON("http://localhost:8080/game", function( data ) {
+$.getJSON("http://localhost:8080/gameSpanish", function( data ) {
 display(data);
 game = data;
 });
@@ -138,7 +138,7 @@ game = data;
 $("#newGame").click(function(){
 $.ajax({
   type: "POST",
-  url: "/gameNew",
+  url: "/gameNewSpanish",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -152,7 +152,7 @@ $.ajax({
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/dealGame",
+  url: "/dealGameSpanish",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -166,7 +166,7 @@ $.ajax({
 function removeCard(colNumber){
 $.ajax({
 type: "POST",
-url: "/removeCard/"+colNumber,
+url: "/removeCardSpanish/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
@@ -197,7 +197,7 @@ var colFrom = $("#from_col").val();
 var colTo = $("#to_col").val();
 $.ajax({
   type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
+  url: "/moveCardSpanish/"+colFrom+"/"+colTo,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;

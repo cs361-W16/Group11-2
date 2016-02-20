@@ -7,7 +7,8 @@ import java.util.Random;
  */
 public class EnglishGame extends Game {
 
-    public EnglishGame(){
+    public EnglishGame()
+    {
         super();
         cardsLeft = 52;
     }

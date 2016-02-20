@@ -29,7 +29,8 @@ import static org.junit.Assert.assertThat;
 public class ApiControllerDocTesterTest extends NinjaDocTester {
     
     String URL_INDEX = "/";
-    String URL_ACES_UP = "/AcesUp";
+    String URL_ENG_ACES_UP = "/EnglishAcesUp";
+    String URL_SPA_ACES_UP = "/SpanishAcesUp";
     
     @Test
     public void testGetIndex() {
@@ -43,12 +44,22 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     }
 
     @Test
-    public void testAcesUp() {
+    public void testEnglishAcesUp() {
         Response response = makeRequest(
                 Request.GET().url(
-                        testServerUrl().path(URL_ACES_UP)));
+                        testServerUrl().path(URL_ENG_ACES_UP)));
 
         assertThat(response.payload, containsString("Aces Up"));
+        assertThat(response.payload, containsString("columnOfCards"));
+    }
+
+    @Test
+    public void testSpanishAcesUp() {
+        Response response = makeRequest(
+                Request.GET().url(
+                        testServerUrl().path(URL_SPA_ACES_UP)));
+        
+        assertThat(response.payload, containsString("Ases Arriba"));
         assertThat(response.payload, containsString("columnOfCards"));
     }
 

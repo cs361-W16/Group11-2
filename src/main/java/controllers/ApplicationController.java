@@ -18,6 +18,7 @@ package controllers;
 
 import models.Game;
 import models.SpanishGame;
+import models.EnglishGame;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -33,23 +34,22 @@ public class ApplicationController {
         return Results.html();
     }
 
-    public Result acesUp() {
-        return Results.html().template("views/AcesUp/AcesUp.flt.html");
+    public Result acesUpEnglish() {
+        return Results.html().template("views/AcesUp/EnglishAcesUp.flt.html");
     }
 
     public Result acesUpSpanish() {
         return Results.html().template("views/AcesUp/SpanishAcesUp.flt.html");
     }
-    /*
-    public Result gameGet(){
-        Game g = new Game();
-        g.buildDeck();
+
+    public Result gameGetEnglish(){
+        Game g = new EnglishGame();
         g.shuffle();
         g.dealFour();
 
         return Results.json().render(g);
     }
-*/
+
     public Result gameGetSpanish(){
         Game g = new SpanishGame();
         g.shuffle();
@@ -57,9 +57,9 @@ public class ApplicationController {
 
         return Results.json().render(g);
     }
-/*
-    public Result gameReset(){
-        Game g = new Game();
+
+    public Result gameResetEnglish(){
+        Game g = new EnglishGame();
         g.buildDeck();
         g.shuffle();
         g.dealFour();
@@ -67,7 +67,7 @@ public class ApplicationController {
 
         return Results.json().render(g);
     }
-*/
+
     public Result gameResetSpanish(){
         Game g = new SpanishGame();
         g.shuffle();
@@ -78,7 +78,7 @@ public class ApplicationController {
 
     }
 
-    public Result dealPost(Context context, Game g) {
+    public Result dealPostEnglish(Context context, EnglishGame g) {
         if(context.getRequestPath().contains("deal")){
             g.dealFour();
         }
@@ -92,7 +92,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result removeCardEnglish(Context context, @PathParam("column") int colNumber, EnglishGame g){
         g.remove(colNumber);
         return  Results.json().render(g);
     }
@@ -102,7 +102,7 @@ public class ApplicationController {
         return  Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result moveCardEnglish(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, EnglishGame g){
         g.move(colFrom,colTo);
         return  Results.json().render(g);
     }

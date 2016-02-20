@@ -29,17 +29,17 @@ public class Routes implements ApplicationRoutes {
         
         router.GET().route("/").with(ApplicationController.class, "index");
 //      router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
-        router.GET().route("/AcesUp").with(ApplicationController.class, "acesUp");
+        router.GET().route("/EnglishAcesUp").with(ApplicationController.class, "acesUpEnglish");
         router.GET().route("/SpanishAcesUp").with(ApplicationController.class, "acesUpSpanish");
-        //router.GET().route("/game").with(ApplicationController.class, "gameGet");
+        router.GET().route("/gameEnglish").with(ApplicationController.class, "gameGetEnglish");
         router.GET().route("/gameSpanish").with(ApplicationController.class, "gameGetSpanish");
-        //router.POST().route("/gameNew").with(ApplicationController.class, "gameReset");
+        router.POST().route("/gameNewEnglish").with(ApplicationController.class, "gameResetEnglish");
         router.POST().route("/gameNewSpanish").with(ApplicationController.class, "gameResetSpanish");
-        router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+        router.POST().route("/dealGameEnglish").with(ApplicationController.class, "dealPostEnglish");
         router.POST().route("/dealGameSpanish").with(ApplicationController.class, "dealPostSpanish");
-        router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
+        router.POST().route("/moveCardEnglish/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCardEnglish");
         router.POST().route("/moveCardSpanish/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCardSpanish");
-        router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
+        router.POST().route("/removeCardEnglish/{column}").with(ApplicationController.class, "removeCardEnglish");
         router.POST().route("/removeCardSpanish/{column}").with(ApplicationController.class, "removeCardSpanish");
 
         ///////////////////////////////////////////////////////////////////////

@@ -108,6 +108,8 @@ to <select id="to_col"> <option value = "0">0</option>
     <option value = "3">3</option></select><button id="moveButton">Move</button>
 
 <button id="newGame">New Game</button>
+<br>
+<a href="/SpanishAcesUp">Spanish Aces Up</a>
 
 <script>
 
@@ -137,7 +139,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
 }
 
-$.getJSON("http://localhost:8080/game", function( data ) {
+$.getJSON("http://localhost:8080/gameEnglish", function( data ) {
 display(data);
 game = data;
 });
@@ -146,7 +148,7 @@ game = data;
 $("#newGame").click(function(){
 $.ajax({
   type: "POST",
-  url: "/gameNew",
+  url: "/gameNewEnglish",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -160,7 +162,7 @@ $.ajax({
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/dealGame",
+  url: "/dealGameEnglish",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -174,7 +176,7 @@ $.ajax({
 function removeCard(colNumber){
 $.ajax({
 type: "POST",
-url: "/removeCard/"+colNumber,
+url: "/removeCardEnglish/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
@@ -205,7 +207,7 @@ var colFrom = $("#from_col").val();
 var colTo = $("#to_col").val();
 $.ajax({
   type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
+  url: "/moveCardEnglish/"+colFrom+"/"+colTo,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
